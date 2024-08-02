@@ -32,3 +32,29 @@ $routes->group("admin/kategori", function ($routes) {
     // $routes->get('(:any)/restore', 'Panel\Agenda::restore/$1');
     // $routes->get('(:any)/remove', 'Panel\Agenda::remove/$1');
 });
+
+$routes->group("admin/gedung", function ($routes) {
+    $routes->get('/', 'admin\Gedung::index');
+    // $routes->post('fetch-publish', 'Panel\Agenda::fetchAgendaPublish');
+    // $routes->post('fetch-draft', 'Panel\Agenda::fetchAgendaDraft');
+    // $routes->post('fetch-trash', 'Panel\Agenda::fetchAgendaTrash');
+    $routes->match(["get", "post"], "tambah", "admin\Gedung::tambah");
+    // $routes->match(["get", "post"], "(:any)/edit", "Panel\Agenda::edit/$1");
+    // $routes->post('trash-selected', 'Panel\Agenda::trashSelected');
+    // $routes->get('(:any)/trash', 'Panel\Agenda::trash/$1');
+    // $routes->get('(:any)/restore', 'Panel\Agenda::restore/$1');
+    // $routes->get('(:any)/remove', 'Panel\Agenda::remove/$1');
+});
+
+$routes->group("admin/ruang", function ($routes) {
+    $routes->get('/', 'admin\Ruang::index');
+    // $routes->post('fetch-publish', 'Panel\Agenda::fetchAgendaPublish');
+    // $routes->post('fetch-draft', 'Panel\Agenda::fetchAgendaDraft');
+    // $routes->post('fetch-trash', 'Panel\Agenda::fetchAgendaTrash');
+    $routes->match(["get", "post"], "tambah", "admin\Ruang::tambah");
+    // $routes->match(["get", "post"], "(:any)/edit", "Panel\Agenda::edit/$1");
+    // $routes->post('trash-selected', 'Panel\Agenda::trashSelected');
+    // $routes->get('(:any)/trash', 'Panel\Agenda::trash/$1');
+    // $routes->get('(:any)/restore', 'Panel\Agenda::restore/$1');
+    // $routes->get('(:any)/remove', 'Panel\Agenda::remove/$1');
+});

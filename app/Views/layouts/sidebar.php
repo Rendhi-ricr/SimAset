@@ -18,53 +18,29 @@
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-corner-right-down align-middle">
                         <polyline points="10 15 15 20 20 15"></polyline>
                         <path d="M4 4h7a4 4 0 0 1 4 4v12"></path>
-                    </svg> <span class="align-middle">Data Barang</span>
+                    </svg> <span class="align-middle">Master</span>
                 </a>
                 <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar" style="">
                     <li class="sidebar-item">
-                        <a href="/admin/barang" class="sidebar-link ms-4">Master Barang</a>
-                        <!-- <ul id="multi-2" class="sidebar-dropdown list-unstyled collapse">
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="#">Item 1</a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="#">Item 2</a>
-                            </li>
-                        </ul> -->
+                        <a href="/admin/barang" class="sidebar-link ms-4">Barang</a>
                     </li>
-                    <!-- <li class="sidebar-item">
-                        <a data-bs-target="#multi-3" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">Three Levels</a>
-                        <ul id="multi-3" class="sidebar-dropdown list-unstyled collapse">
-                            <li class="sidebar-item">
-                                <a data-bs-target="#multi-3-1" data-bs-toggle="collapse" class="sidebar-link collapsed" aria-expanded="false">Item 1</a>
-                                <ul id="multi-3-1" class="sidebar-dropdown list-unstyled collapse">
-                                    <li class="sidebar-item">
-                                        <a class="sidebar-link" href="#">Item 1</a>
-                                    </li>
-                                    <li class="sidebar-item">
-                                        <a class="sidebar-link" href="#">Item 2</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="sidebar-item">
-                                <a class="sidebar-link" href="#">Item 2</a>
-                            </li>
-                        </ul>
-                    </li> -->
+                    <li class="sidebar-item">
+                        <a href="/admin/kategori" class="sidebar-link ms-4">
+                            Kategori Barang
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/admin/gedung" class="sidebar-link ms-4">
+                            Data Gedung
+                        </a>
+                    </li>
+                    <li class="sidebar-item">
+                        <a href="/admin/ruang" class="sidebar-link ms-4">
+                            Data Ruangan
+                        </a>
+                    </li>
                 </ul>
             </li>
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="/admin/kategori">
-                    <i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Kategori Aset</span>
-                </a>
-            </li>
-
-            <li class="sidebar-item">
-                <a class="sidebar-link" href="">
-                    <i class="align-middle" data-feather="grid"></i> <span class="align-middle">News</span>
-                </a>
-            </li>
-
             <li class="sidebar-item">
                 <a class="sidebar-link" href="">
                     <i class="align-middle" data-feather="align-left"></i> <span class="align-middle">FAQ</span>

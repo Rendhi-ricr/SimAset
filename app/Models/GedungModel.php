@@ -6,38 +6,55 @@ use CodeIgniter\Model;
 
 class GedungModel extends Model
 {
-    protected $table = 't_barang';
-    protected $primaryKey = 'kode_barang';
-    protected $allowedFields = ['kode_barang', 'nama_barang', 'merk', 'jumlah', 'keterangan'];
+    protected $table = 't_gedung';
+    protected $primaryKey = 'kode_gedung';
+    protected $allowedFields = ['kode_gedung', 'nama_gedung', 'klasifikasi', 'keterangan'];
 
-    public function generateKodeBarang($klasifikasi)
+    public function getGedungByKlasifikasi($klasifikasi)
+    {
+        return $this->where('klasifikasi', $klasifikasi)->findAll();
+    }
+
+    public function generateKodeGedung($klasifikasi)
     {
         // Validasi klasifikasi
         $klasifikasi = strtoupper($klasifikasi);
-        $validKlasifikasi = ['ABC', 'DEF']; // Tambahkan klasifikasi lain jika diperlukan
+        $validKlasifikasi = ['REK', 'FIA', 'FSK', 'FIH', 'FAP', 'FKM', 'FKI', 'GBL', 'PSC']; // Tambahkan klasifikasi lain jika diperlukan
 
         if (!in_array($klasifikasi, $validKlasifikasi)) {
             throw new \InvalidArgumentException('Klasifikasi tidak valid');
         }
 
         $builder = $this->db->table($this->table);
-        $builder->select('kode_barang');
-        $builder->where('kode_barang LIKE', $klasifikasi . '%');
-        $builder->orderBy('kode_barang', 'DESC');
+        $builder->select('kode_gedung');
+        $builder->where('kode_gedung LIKE', $klasifikasi . '%');
+        $builder->orderBy('kode_gedung', 'DESC');
         $query = $builder->get();
 
         $result = $query->getRow();
-        $lastKode = $result ? $result->kode_barang : $klasifikasi . '00000';
+        $lastKode = $result ? $result->kode_gedung : $klasifikasi . '000';
 
-        // Ekstrak bagian numerik dari kode terakhir
-        $lastNumber = substr($lastKode, 3);
+        // Ekstrak bagian numerik dari kode terakhir setelah huruf
+        $numericPart = substr($lastKode, strlen($klasifikasi));
+        $lastNumber = is_numeric($numericPart) ? (int)$numericPart : 0;
+
+        // Pecah bagian numerik menjadi digit
+        $numberStr = sprintf('%03d', $lastNumber);
+
+        // Temukan posisi digit pertama yang tidak nol untuk menambah
+        $leadingDigit = intval(substr($numberStr, 0, 1));
+
+        // Generate nomor berikutnya dengan menambahkan 1 pada digit pertama
+        $newLeadingDigit = $leadingDigit + 1;
+        $nextNumberStr = sprintf('%01d%s', $newLeadingDigit, substr($numberStr, 1));
 
         // Generate kode berikutnya dengan awalan klasifikasi
-        $nextNumber = str_pad((int)$lastNumber + 1, 5, '0', STR_PAD_LEFT);
-        $nextKode = $klasifikasi . $nextNumber;
+        $nextKode = $klasifikasi . $nextNumberStr;
 
         return $nextKode;
     }
+
+
 
     // function getAll()
     // {

@@ -6,7 +6,7 @@ use App\Controllers\BaseController;
 use App\Models\GedungModel;
 
 
-class Barang extends BaseController
+class Gedung extends BaseController
 {
     protected $gedungModel;
     public function __construct()
@@ -16,8 +16,8 @@ class Barang extends BaseController
 
     public function index()
     {
-        $data['barang'] = $this->barangModel->findAll();
-        return view("admin/barang/index", $data);
+        $data['gedung'] = $this->gedungModel->findAll();
+        return view("admin/gedung/index", $data);
     }
 
     public function tambah()
@@ -26,13 +26,12 @@ class Barang extends BaseController
         if ($this->request->getMethod() === 'post') {
 
             $gedungModel = new GedungModel();
-            $klasifikasi = $this->request->getPost('klasifikasi') ?? 'ABC';
-            $kodeBarang = $gedungModel->generateKodeBarang($klasifikasi);
+            $klasifikasi = $this->request->getPost('klasifikasi');
+            $kodeGedung = $gedungModel->generateKodeGedung($klasifikasi);
             $storeData = [
-                'kode_barang'   => $kodeBarang,
-                'nama_barang'   => $this->request->getPost('nama_barang'),
-                'merk'   => $this->request->getPost('merk'),
-                'jumlah'   => $this->request->getPost('jumlah'),
+                'kode_gedung'   => $kodeGedung,
+                'nama_gedung'   => $this->request->getPost('nama_gedung'),
+                'klasifikasi'   => $this->request->getPost('klasifikasi'),
                 'keterangan'   => $this->request->getPost('keterangan'),
 
             ];
@@ -40,8 +39,8 @@ class Barang extends BaseController
 
             //flash message
             session()->setFlashdata('message', 'Faq berhasil disimpan');
-            return redirect()->to('/admin/barang');
+            return redirect()->to('/admin/gedung');
         }
-        return view('admin/barang/tambah', $data);
+        return view('admin/gedung/tambah', $data);
     }
 }
